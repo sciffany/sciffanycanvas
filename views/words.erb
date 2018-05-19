@@ -1,0 +1,15 @@
+<h3>Welcome to the secret word list!</h3>
+
+
+<% @words.each do |word| %>
+	<li>
+		This word <%= word.content %>
+	</li>
+<% end %>
+
+
+
+<form action="/words/submit" method="POST">
+	<input type="text" name="word[content]" value="Enter the content here" />
+	<input type="submit" value="Submit" />
+</form>
