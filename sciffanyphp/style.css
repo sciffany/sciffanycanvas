@@ -1,0 +1,19 @@
+body {
+    font-family: Tahoma, Geneva, sans-serif;
+   	text-align:center;
+    font-size:12px;
+    padding:35px;
+   
+}
+
+
+#wrapper{
+	margin:0 auto;
+	border:2px solid #ACD8F0;
+	width:1000px;
+	height:500px;
+	text-align:center;
+
+
+
+}
