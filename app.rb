@@ -26,6 +26,7 @@ end
 post '/words/submit' do
 
   @word = Word.new(params[:word])
+  @word.update_attributes(word_length: @word.content.length)	
   if @word.save
   	redirect '/words'
   else

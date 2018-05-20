@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_20_101639) do
+ActiveRecord::Schema.define(version: 2018_05_20_102440) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 2018_05_20_101639) do
   create_table "words", force: :cascade do |t|
     t.string "content"
     t.integer "difficulty", default: 2
+    t.integer "word_length"
   end
 
 end
