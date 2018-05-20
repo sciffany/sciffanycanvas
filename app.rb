@@ -16,19 +16,19 @@ end
 
 
 
-get '/words' do
+get '/admin/words' do
   
   @words = Word.all
   erb :words
 end
 
 
-post '/words/submit' do
+post '/admin/words/submit' do
 
   @word = Word.new(params[:word])
   @word.update_attributes(word_length: @word.content.length)	
   if @word.save
-  	redirect '/words'
+  	redirect '/admin/words'
   else
   	"Sorry"
   end
