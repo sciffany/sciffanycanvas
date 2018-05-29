@@ -14,6 +14,11 @@ get '/' do
 end
 
 
+get '/anagram' do
+  erb :anagram
+end
+
+
 
 
 get '/admin/words' do
@@ -25,9 +30,15 @@ end
 
 post '/admin/words/submit' do
 
-  @word = Word.new(params[:word])
-  @word.update_attributes(word_length: @word.content.length)	
-  if @word.save
+  @words = params[:word].split(' ')
+  @noOfWords = @words.length
+  @words.each do |word|
+  	@word = Word.new({content: word})
+	@word.update_attributes(word_length: @word.content.length)
+	@noOfWords -= 1 if @word.save
+  end
+
+  if @noOfWords == 0
   	redirect '/admin/words'
   else
   	"Sorry"
