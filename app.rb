@@ -2,7 +2,6 @@ require 'sinatra'
 
 require 'sinatra/activerecord'
 require './config/environments'
-require './models/text'
 require './models/word'
 
 class App < Sinatra::Base
@@ -15,6 +14,7 @@ end
 
 
 get '/anagram' do
+  @words = Word.where(difficulty: 2)
   erb :anagram
 end
 

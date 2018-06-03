@@ -10,6 +10,10 @@
 		<canvas id="canvas" width="1000" height="500" tabindex="1"></canvas>
 	</div>
 
+		This word <%= "e" %>
+
+
+<script type = "text/javascript">var words = <%= @words.all.collect(&:content) %> </script>
 <script src="anagram.js"></script>
 
 </body>
