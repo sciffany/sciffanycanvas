@@ -10,10 +10,11 @@
 		<canvas id="canvas" width="1000" height="500" tabindex="1"></canvas>
 	</div>
 
-		This word <%= "e" %>
+<%= @selection = @words.shuffle.first(10).collect(&:content)
+	@shuffled = @selection.map{|word| word.split('').shuffle.join.upcase} %>
 
 
-<script type = "text/javascript">var words = <%= @words.all.collect(&:content) %> </script>
+<script type = "text/javascript">var words = <%= @shuffled %> </script>
 <script src="anagram.js"></script>
 
 </body>

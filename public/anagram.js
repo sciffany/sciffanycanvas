@@ -1,12 +1,12 @@
-//https://stackoverflow.com/questions/2190801/passing-parameters-to-javascript-files
-
-
-
 var c = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 ctx.font = "30px Arial";
 
 word = words[1];
+
+
+
+
 //https://www.w3schools.com/graphics/game_sound.asp
 function sound(src) {
     this.sound = document.createElement("audio");
@@ -36,6 +36,6 @@ c.addEventListener("keydown",check);
 
 function check(e) {
 	mySound.play();
-    ctx.fillText(String.fromCharCode(e.keyCode),pos+=10,200);
+    ctx.fillText(String.fromCharCode(e.keyCode),pos+=50,200);
 
 }
