@@ -9,8 +9,9 @@ c.width = width;
 c.addEventListener("keydown",check);
 window.addEventListener("resize",resizeCanvas, false);
 
-var word = selection[0];
-var letters = shuffled[0];
+var level = 0;
+var word = selection[level];
+var letters = shuffled[level];
 var guess = [];
 
 redraw();
@@ -68,37 +69,44 @@ function redraw(){
         var position = stride*i+stride/2+(1-percentCanvas)*width/2
         ctx.beginPath();
         ctx.fillStyle="white";
-        ctx.arc(position,90,radius,0,6.28, false);
+        ctx.arc(position,radius*3,radius,0,6.28, false);
         ctx.fill();
         ctx.fillStyle="black";
-        ctx.fillText(letters[i],position-radius/3,100);
+        ctx.fillText(letters[i],position-radius/3,radius*3.5);
     }
 
     for (var i=0; i<guess.length; i++){
         ctx.font = fontsize+"px Arial";
         var position = stride*i+stride/2+(1-percentCanvas)*width/2
         ctx.fillStyle="white";
-        ctx.fillText(guess[i],position-radius/4,200);
+        ctx.fillText(guess[i],position-radius/4,radius*6);
     }
 
 
 
 }
-var posit = 10;
+
 function check(e) {
-        if (e.keyCode == 8){
-            var index = letters.indexOf(" ");
-            letters[index] = guess.pop();
+    if (e.keyCode == 8){
+        var index = letters.indexOf(" ");
+        letters[index] = guess.pop();
+        redraw();
+    } else {
+        var character = String.fromCharCode(e.keyCode);
+        var index = letters.indexOf(character.toUpperCase());
+        if (index != -1) {
+            letters[index] = " ";
+            guess.push(character);
             redraw();
-        }
-        else {
-            var character = String.fromCharCode(e.keyCode);
-            var index = letters.indexOf(character.toUpperCase());
-            if (index != -1) {
-                letters[index] = " ";
-                guess.push(character);
+            if (guess.length == letters.length && guess.join("")===word.toUpperCase()){ //check for win
+                level++;
+                word = selection[level];
+                letters = shuffled[level];
+                guess = [];
                 redraw();
+            }
         }
     }
+    
 }
 
