@@ -3,17 +3,44 @@ body {
    	text-align:center;
     font-size:12px;
     padding:35px;
-   
+    background: linear-gradient(#46B29D, #F0CA4D);
+    
 }
 
 
+
+.page{
+
+	display: flex;
+	height:100%;
+	flex-flow:column;
+	
+}
+
+
+
+
+
 #wrapper{
-	margin:0 auto;
-	border:2px solid #ACD8F0;
-	width:1000px;
-	height:500px;
+	margin:0;
 	text-align:center;
+	flex: 1 1 auto;
+	border: 2px grey dotted;
+}
 
 
+#canvas{
+	border: 2px grey dotted;
+	
+}
 
+
+#title{
+	text-align:center;
+	font-size:40px;
+    font-weight: bold;
+    font-family:Georgia;
+    color:white;
+    text-align:left;
+    padding-bottom:10px;
 }

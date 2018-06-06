@@ -3,18 +3,25 @@
 <head><title>Let's play with anagrams!</title></head>
 <link type="text/css" rel="stylesheet" href="style.css" />
 
-
-<body>
-	Find the anagram of the following word
-	<div id="wrapper">
-		<canvas id="canvas" width="1000" height="500" tabindex="1"></canvas>
+<head>
+</head>
+<body style="background-color:#46B29D;">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	
+	<div class="page">
+		<div id="title">
+		Entropius
+		</div>
+		<div id="wrapper">
+			<canvas id="canvas" width=1000; height=100; tabindex="1"></canvas>
+		</div>
 	</div>
 
-<%= @selection = @words.shuffle.first(10).collect(&:content)
-	@shuffled = @selection.map{|word| word.split('').shuffle.join.upcase} %>
+<% @selection = @words.shuffle.first(10).collect(&:content)
+	@shuffled = @selection.map{|word| word.upcase.split('').shuffle} %>
 
 
-<script type = "text/javascript">var words = <%= @shuffled %> </script>
+<script type = "text/javascript">var selection = <%= @selection %>; var shuffled = <%= @shuffled %></script>
 <script src="anagram.js"></script>
 
 </body>
