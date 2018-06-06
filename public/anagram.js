@@ -1,25 +1,19 @@
 var c = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
-ctx.font = "30px Arial";
+var pad=40;
+var width = window.innerWidth - pad*2;
+var height = window.innerHeight - pad*2
+c.height = height;
+c.width = width;
 
-
-
-height = 500, width = 1000;
-var my_gradient=ctx.createLinearGradient(0,0,0,height);
-my_gradient.addColorStop(0.7,"black");
-my_gradient.addColorStop(1,"black");
-
-ctx.fillStyle=my_gradient;
-ctx.fillRect(0,0,height*2,width*2);
+c.addEventListener("keydown",check);
+window.addEventListener("resize",resizeCanvas, false);
 
 var word = selection[0];
-
-
-
 var letters = shuffled[0];
+var guess = [];
 
-//ctx.canvas.width  = window.innerWidth;
-//ctx.canvas.height = window.innerHeight;
+redraw();
 
 //https://www.w3schools.com/graphics/game_sound.asp
 function sound(src) {
@@ -40,44 +34,71 @@ function sound(src) {
 mySound = new sound("type.mp3");
 
 
+function resizeCanvas(e){
+    width = window.innerWidth - pad*2;
+    height = window.innerHeight - pad*2;
+    c.height = height;
+    c.width = width;
 
-
-for (var i =0; i<letters.length; i++){
-    ctx.beginPath();
-    ctx.fillStyle="white";
-    ctx.arc(i*100+60,90,35,0,6.28, false);
-    ctx.fill();
-    ctx.fillStyle="black";
-    ctx.fillText(letters[i],i*100+50,100);
-
+    redraw();
 
 }
-
-var pos = 10;
-
-c.addEventListener("keydown",check);
-
-function check(e) {
-
-    var character = String.fromCharCode(e.keyCode);
-    
-    var index = letters.indexOf(character.toUpperCase());
-    if (index != -1) {
-        letters[index] = " ";
-        mySound.play();
-        ctx.fillStyle="white";
-    
-        ctx.fillText(character,pos+=50,300);
-    }
-
-	
-
-}
-
 
 function redraw(){
-    
+
+    var my_gradient=ctx.createLinearGradient(0,0,0,height);
+    my_gradient.addColorStop(0.7,"black");
+    my_gradient.addColorStop(1,"black");
+    ctx.fillStyle=my_gradient;
+    ctx.fillRect(0,0,width,height);
+
+
+    var nLetters = letters.length;
+    var pos = 10;
+
+    var percentCanvas = 0.4  
+    if (c.width < 1000){
+     percentCanvas = 0.6
+    }
+    var stride = width/nLetters*percentCanvas;
+    var radius = stride/2*0.9;
+    var fontsize = stride*0.5;
+    for (var i =0; i<nLetters; i++){
+        ctx.font = fontsize+"px Arial";
+        var position = stride*i+stride/2+(1-percentCanvas)*width/2
+        ctx.beginPath();
+        ctx.fillStyle="white";
+        ctx.arc(position,90,radius,0,6.28, false);
+        ctx.fill();
+        ctx.fillStyle="black";
+        ctx.fillText(letters[i],position-radius/3,100);
+    }
+
+    for (var i=0; i<guess.length; i++){
+        ctx.font = fontsize+"px Arial";
+        var position = stride*i+stride/2+(1-percentCanvas)*width/2
+        ctx.fillStyle="white";
+        ctx.fillText(guess[i],position-radius/4,200);
+    }
 
 
 
 }
+var posit = 10;
+function check(e) {
+        if (e.keyCode == 8){
+            var index = letters.indexOf(" ");
+            letters[index] = guess.pop();
+            redraw();
+        }
+        else {
+            var character = String.fromCharCode(e.keyCode);
+            var index = letters.indexOf(character.toUpperCase());
+            if (index != -1) {
+                letters[index] = " ";
+                guess.push(character);
+                redraw();
+        }
+    }
+}
+

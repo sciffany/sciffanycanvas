@@ -4,17 +4,15 @@ body {
     font-size:12px;
     padding:35px;
     background: linear-gradient(#46B29D, #F0CA4D);
-    
+    overflow: hidden;
 }
 
 
 
 .page{
-
 	display: flex;
 	height:100%;
-	flex-flow:column;
-	
+	flex-flow:column;	
 }
 
 
@@ -25,13 +23,12 @@ body {
 	margin:0;
 	text-align:center;
 	flex: 1 1 auto;
-	border: 2px grey dotted;
+	display: flex;
 }
 
 
 #canvas{
-	border: 2px grey dotted;
-	
+	flex: 1 1 auto;
 }
 
 
