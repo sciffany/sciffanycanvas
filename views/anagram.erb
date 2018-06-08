@@ -17,7 +17,7 @@
 		</div>
 	</div>
 
-<% @selection = @words.shuffle.first(10).collect(&:content)
+<% @selection = @words.shuffle.first(50).collect(&:content)
 	@shuffled = @selection.map{|word| word.upcase.split('').shuffle} %>
 
 
