@@ -20,7 +20,7 @@ function next(){
 }
 
 window.addEventListener("resize",resizeCanvas, false);
-c.addEventListener("touchstart", next, false);
+window.addEventListener("touchstart", next, false);
 c.addEventListener("mousedown", next);
 var level = 0;
 var word = selection[level];
