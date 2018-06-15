@@ -19,7 +19,7 @@ function next(){
 }
 
 window.addEventListener("resize",resizeCanvas, false);
-c.addEventListener("touchstart", next, false);
+ctx.addEventListener("touchstart", next, false);
 var level = 0;
 var word = selection[level];
 var letters = shuffled[level];
