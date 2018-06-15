@@ -10,8 +10,9 @@ var state = 1; //0-not playing, 1-playing, 2-ending
 
 function next(){
     //get the intercepts
-    changeLevel(1);
-    var new_x = event.clientX - canvas.getBoundingClientRect().left;
+    alert("touched");
+    //changeLevel(1);
+    /**var new_x = event.clientX - canvas.getBoundingClientRect().left;
     var new_y = event.clientY - canvas.getBoundingClientRect().top; 
     /**
     if (new_x<c.width/2){
@@ -21,7 +22,7 @@ function next(){
 
 window.addEventListener("resize",resizeCanvas, false);
 window.addEventListener("touchstart", next, false);
-c.addEventListener("mousedown", next);
+window.addEventListener("mousedown", next);
 var level = 0;
 var word = selection[level];
 var letters = shuffled[level];
