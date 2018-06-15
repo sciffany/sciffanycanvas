@@ -7,7 +7,19 @@ c.height = height;
 c.width = width;
 var state = 1; //0-not playing, 1-playing, 2-ending
 
+
+function next(e){
+    //get the intercepts
+    var new_x = event.clientX - canvas.getBoundingClientRect().left;
+    var new_y = event.clientY - canvas.getBoundingClientRect().top; 
+
+    if (new_x<c.width/2){
+    changeLevel(-1);
+    }
+}
+
 window.addEventListener("resize",resizeCanvas, false);
+c.addEventListener("touchstart", next);
 var level = 0;
 var word = selection[level];
 var letters = shuffled[level];
@@ -43,6 +55,8 @@ function endGame(){
 function midGame(){
     redraw();
     c.addEventListener("keydown",check);
+
+    
 
     c.addEventListener("keydown", function(e) { keys[e.keyCode] = true; });
     c.addEventListener("keyup", function(e) { keys[e.keyCode] = false; });
@@ -106,6 +120,7 @@ function redraw(){
 
 }
 
+
 function changeLevel(up){
     level+=up;
     if (level == -1){
@@ -150,7 +165,7 @@ function guessCharacter(character){
 function check(e) {
 
     switch(e.keyCode){
-        case 13:
+        case 13: //enter for hint
             var character = word.toUpperCase()[guess.length];
             guessCharacter(character);
             break;
