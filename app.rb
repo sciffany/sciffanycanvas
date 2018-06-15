@@ -20,6 +20,12 @@ end
 
 
 
+get '/touchtest' do
+  erb :touchtest
+end
+
+
+
 
 get '/admin/words' do
   
