@@ -56,8 +56,9 @@ function clicked(){
     x -= (1-percentCanvas)*c.width/2 + stride/2;
 
     var i = x/stride;
-    alert(x);
+    alert(percentCanvas);
     alert(stride);
+    alert(c.width);
 
     i = Math.round(i);
 
