@@ -48,7 +48,9 @@ function endGame(){
 function clicked(){
     var x = event.clientX - canvas.getBoundingClientRect().left;
     var y = event.clientY - canvas.getBoundingClientRect().top;
-
+    alert(x);
+    alert(event.clientX);
+    alert(canvas.getBoundingClientRect());
     var percentCanvas = getPercentCanvas();
    
     var stride = getStride(nLetters, percentCanvas);
@@ -56,9 +58,6 @@ function clicked(){
     x -= (1-percentCanvas)*c.width/2 + stride/2;
 
     var i = x/stride;
-    alert(percentCanvas);
-    alert(stride);
-    alert(c.width);
 
     i = Math.round(i);
 
