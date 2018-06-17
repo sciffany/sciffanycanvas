@@ -66,7 +66,7 @@ function midGame(){
     redraw();
     c.addEventListener("keydown",check);
 
-    c.addEventListener("touchstart", clicked, false);
+    c.addEventListener("touchstart", clicked);
     c.addEventListener("mousedown", clicked);
 
     c.addEventListener("keydown", function(e) { keys[e.keyCode] = true; });
