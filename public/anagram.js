@@ -169,7 +169,7 @@ function returnLetters(){
 function guessIndex(index){
     var character = letters[index];
     
-    if (character!=" ") {
+    if (character!=" " and character!=undefined) {
 
     tryGuess(index, character);
     }
