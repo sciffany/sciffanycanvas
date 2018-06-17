@@ -56,6 +56,9 @@ function clicked(){
     x -= (1-percentCanvas)*c.width/2 + stride/2;
 
     var i = x/stride;
+    alert(x);
+    alert(stride);
+
     i = Math.round(i);
 
     guessIndex(i);
@@ -168,8 +171,7 @@ function returnLetters(){
 
 function guessIndex(index){
     var character = letters[index];
-    alert(index);
-    if (character!=" " && character!=undefined) {
+    if (character!=" ") {
 
     tryGuess(index, character);
     }
