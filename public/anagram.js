@@ -8,21 +8,15 @@ c.width = width;
 var state = 1; //0-not playing, 1-playing, 2-ending
 
 
-function next(){
-    //get the intercepts
-    alert("touched");
-    //changeLevel(1);
-    /**var new_x = event.clientX - canvas.getBoundingClientRect().left;
-    var new_y = event.clientY - canvas.getBoundingClientRect().top; 
-    /**
-    if (new_x<c.width/2){
-    changeLevel(-1);
-    }**/
+function clicked(){
+    var x = event.clientX - canvas.getBoundingClientRect().left;
+    var y = event.clientY - canvas.getBoundingClientRect().top;
+
+    
 }
 
 window.addEventListener("resize",resizeCanvas, false);
-window.addEventListener("touchstart", next, false);
-window.addEventListener("mousedown", next);
+
 var level = 0;
 var word = selection[level];
 var letters = shuffled[level];
@@ -59,7 +53,8 @@ function midGame(){
     redraw();
     c.addEventListener("keydown",check);
 
-    
+    c.addEventListener("touchstart", clicked, false);
+    c.addEventListener("mousedown", clicked);
 
     c.addEventListener("keydown", function(e) { keys[e.keyCode] = true; });
     c.addEventListener("keyup", function(e) { keys[e.keyCode] = false; });
@@ -88,9 +83,13 @@ function redraw(){
     var pos = 10;
 
     var percentCanvas = 0.4  
-    if (c.width < 1000){
-     percentCanvas = 0.6
+    if (nLetters>8){
+        percentCanvas =0.5
     }
+    if (c.width < 1000){
+     percentCanvas *= 3/2
+    }
+
 
     var circleColor = "white";
     if (guessed[level]){

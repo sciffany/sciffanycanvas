@@ -30,6 +30,7 @@
 			<canvas id="canvas" tabindex="1"></canvas>
 		</div>
 	</div>
+<%= @words.length %>
 
 <% @selection = @words.shuffle.first(50).collect(&:content)
 	@shuffled = @selection.map{|word| word.upcase.split('').shuffle} %>

@@ -14,16 +14,9 @@ end
 
 
 get '/anagram' do
-  @words = Word.where(difficulty: 2)
+  @words = Word.where("frequency>? and word_length > ? and word_length < ?", 1, 4, 9)
   erb :anagram
 end
-
-
-
-get '/touchtest' do
-  erb :touchtest
-end
-
 
 
 

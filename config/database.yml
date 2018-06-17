@@ -3,8 +3,8 @@ development:
   encoding: unicode
   database: mydb
   pool: 2
-  username: postgresql
-  password: postgresql
+  username: postgres
+  password: postgres
 production:
   adapter: postgresql
   encoding: unicode
