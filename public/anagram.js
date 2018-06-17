@@ -1,28 +1,22 @@
 var c = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 var pad=40;
-var width = window.innerWidth - pad*2;
-var height = window.innerHeight - pad*2
-c.height = height;
-c.width = width;
+c.width = window.innerWidth - pad*2;
+c.height = window.innerHeight - pad*2;
+
 var state = 1; //0-not playing, 1-playing, 2-ending
 
-
-function clicked(){
-    var x = event.clientX - canvas.getBoundingClientRect().left;
-    var y = event.clientY - canvas.getBoundingClientRect().top;
-
-    
-}
 
 window.addEventListener("resize",resizeCanvas, false);
 
 var level = 0;
 var word = selection[level];
 var letters = shuffled[level];
+var nLetters = letters.length;
 var guess = [];
 var noOfWords = shuffled.length;
 var guessed = [];
+
 for (var i=0;i<noOfWords;i++){
     guessed.push(0);
 }
@@ -49,6 +43,25 @@ function endGame(){
 }
 
 
+
+
+function clicked(){
+    var x = event.clientX - canvas.getBoundingClientRect().left;
+    var y = event.clientY - canvas.getBoundingClientRect().top;
+
+    var percentCanvas = getPercentCanvas();
+   
+    var stride = getStride(nLetters, percentCanvas);
+
+    x -= (1-percentCanvas)*c.width/2 + stride/2;
+
+    var i = x/stride;
+    i = Math.round(i);
+
+    guessIndex(i);
+        
+}
+
 function midGame(){
     redraw();
     c.addEventListener("keydown",check);
@@ -63,33 +76,24 @@ function midGame(){
 
 
 function resizeCanvas(e){
-    width = window.innerWidth - pad*2;
-    height = window.innerHeight - pad*2;
-    c.height = height;
-    c.width = width;
+    c.width = window.innerWidth - pad*2;
+    c.height = window.innerHeight - pad*2;
     redraw();
 }
 
 function redraw(){
 
-    var my_gradient=ctx.createLinearGradient(0,0,0,height);
+    var my_gradient=ctx.createLinearGradient(0,0,0,c.height);
     my_gradient.addColorStop(0.7,"black");
     my_gradient.addColorStop(1,"black");
     ctx.fillStyle=my_gradient;
-    ctx.fillRect(0,0,width,height);
+    ctx.fillRect(0,0,c.width,c.height);
 
 
     var nLetters = letters.length;
     var pos = 10;
 
-    var percentCanvas = 0.4  
-    if (nLetters>8){
-        percentCanvas =0.5
-    }
-    if (c.width < 1000){
-     percentCanvas *= 3/2
-    }
-
+    var percentCanvas = getPercentCanvas();
 
     var circleColor = "white";
     if (guessed[level]){
@@ -97,12 +101,12 @@ function redraw(){
         guess = selection[level].toUpperCase();
     }
 
-    var stride = c.width/nLetters*percentCanvas;
+    var stride = getStride(nLetters, percentCanvas); 
     var radius = stride/2*0.9;
     var fontsize = stride*0.5;
     for (var i =0; i<nLetters; i++){
         ctx.font = fontsize+"px Arial";
-        var position = stride*i+stride/2+(1-percentCanvas)*width/2
+        var position = stride*i+stride/2+(1-percentCanvas)*c.width/2
         ctx.beginPath();
         ctx.fillStyle=circleColor;
         ctx.arc(position,radius*3,radius,0,6.28, false);
@@ -113,7 +117,7 @@ function redraw(){
 
     for (var i=0; i<guess.length; i++){
         ctx.font = fontsize+"px Arial";
-        var position = stride*i+stride/2+(1-percentCanvas)*width/2
+        var position = stride*i+stride/2+(1-percentCanvas)*c.width/2
         ctx.fillStyle=circleColor;
         ctx.fillText(guess[i],position-radius/4,radius*6);
     }
@@ -132,15 +136,28 @@ function changeLevel(up){
     }
     word = selection[level];
     letters = shuffled[level];
+    nLetters = letters.length;
     guess = [];
     redraw();
 
 }
 
+function getPercentCanvas(){
+    var percentCanvas = 0.4  
+    
+    if (c.width < 1000){
+     percentCanvas *= 3/2
+    }
+    return percentCanvas;
+}
+
+function getStride(nLetters, percentCanvas){
+    return c.width/nLetters*percentCanvas; 
+}
+
 function returnLetters(){
     var guessLength = guess.length;
-    var nLength = letters.length
-    for(var i=0; i<nLength;i++){
+    for(var i=0; i<nLetters;i++){
         if(letters[i]===" "){
             letters[i] = guess.pop();
         }
@@ -148,13 +165,21 @@ function returnLetters(){
 
 }
 
-function guessCharacter(character){
-    var index = letters.indexOf(character.toUpperCase());
+
+function guessIndex(index){
+    var character = letters[index];
+
+    tryGuess(index, character);
+
+}
+
+function tryGuess(index, character){
+
     if(index!=-1){
         letters[index] = " ";
         guess.push(character);
         redraw();
-        if (guess.length == letters.length && guess.join("")===word.toUpperCase()){ //check for win
+        if (guess.length == nLetters && guess.join("")===word.toUpperCase()){ //check for win
             guessed[level] = 1;
             redraw();
             setTimeout(function (){
@@ -162,6 +187,11 @@ function guessCharacter(character){
                 }, 300)
         }
     }
+}
+
+function guessCharacter(character){
+    var index = letters.indexOf(character.toUpperCase());
+    tryGuess(index, character);
 }
 
 function check(e) {
@@ -172,7 +202,6 @@ function check(e) {
             guessCharacter(character);
             break;
         case 32: //space
-            var nLetters = letters.length;
             var shuffled = shuffle(letters);
             for(var i=0; i<nLetters; i++){
                 letters[i] = shuffled[i];
@@ -207,7 +236,7 @@ function check(e) {
 
 
 function drawLevelBars(){
-    var stride = width/noOfWords;
+    var stride = c.width/noOfWords;
     var radius = stride * 0.8/2;
     for (var i=0; i<noOfWords; i++){
         var circleColor = "white";
@@ -222,7 +251,7 @@ function drawLevelBars(){
         ctx.beginPath();
         var position = i*stride+stride/2;
         ctx.fillStyle=circleColor;
-        ctx.arc(position,height-radius*2,radius,0,6.28, false);
+        ctx.arc(position,c.height-radius*2,radius,0,6.28, false);
         ctx.fill();
     }
 }
