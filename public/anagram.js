@@ -43,14 +43,31 @@ function endGame(){
 }
 
 
+function touched(){
 
+    var touch = event.touches[0];
+    
+    var x = touch.pageX - canvas.offsetLeft;
+    var y = touch.pageY - canvas.offsetTop;
+
+    var percentCanvas = getPercentCanvas();
+   
+    var stride = getStride(nLetters, percentCanvas);
+
+    x -= (1-percentCanvas)*c.width/2 + stride/2;
+
+    var i = x/stride;
+
+    i = Math.round(i);
+
+    guessIndex(i);
+
+
+}
 
 function clicked(){
     var x = event.clientX - canvas.getBoundingClientRect().left;
     var y = event.clientY - canvas.getBoundingClientRect().top;
-    alert(x);
-    alert(event.clientX);
-    alert(canvas.getBoundingClientRect());
     var percentCanvas = getPercentCanvas();
    
     var stride = getStride(nLetters, percentCanvas);
@@ -69,7 +86,7 @@ function midGame(){
     redraw();
     c.addEventListener("keydown",check);
 
-    c.addEventListener("touchstart", clicked);
+    c.addEventListener("touchstart", touched);
     c.addEventListener("mousedown", clicked);
 
     c.addEventListener("keydown", function(e) { keys[e.keyCode] = true; });
