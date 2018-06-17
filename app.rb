@@ -14,7 +14,7 @@ end
 
 
 get '/anagram' do
-  @words = Word.where("frequency>? and word_length > ? and word_length < ?", 1, 4, 9)
+  @words = Word.where("frequency>? and word_length > ? and word_length < ?", 1, 5, 9)
   erb :anagram
 end
 

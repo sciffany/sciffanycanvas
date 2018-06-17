@@ -168,8 +168,11 @@ function returnLetters(){
 
 function guessIndex(index){
     var character = letters[index];
+    
+    if (character!=" ") {
 
     tryGuess(index, character);
+    }
 
 }
 
