@@ -168,7 +168,7 @@ function returnLetters(){
 
 function guessIndex(index){
     var character = letters[index];
-    
+    alert(index);
     if (character!=" " && character!=undefined) {
 
     tryGuess(index, character);
