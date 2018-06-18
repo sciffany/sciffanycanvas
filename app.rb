@@ -20,9 +20,9 @@ get '/anagram' do
     f.each_line do |line|
       vars = line.split
       ctnt = vars[0]
-      freq = 2.1
+      freq = vars[1].to_f
       word = {content: ctnt, frequency: freq, word_length: ctnt.length} # some ruby object
-      if (word[:frequency]>1 and word[:word_length]>5 and word[:word_length]<9)
+      if (word[:frequency]>1.7 and word[:word_length]>5 and word[:word_length]<9)
         @words.push(word)
       end
     end
