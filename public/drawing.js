@@ -1,6 +1,11 @@
 
 var c = document.getElementById("canvas");
 
+var pad=40;
+c.width = window.innerWidth - pad*2;
+c.height = window.innerHeight - pad*2;
+
+
 var drawing = false;
 
 c.addEventListener("mousedown", startDraw);
