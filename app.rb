@@ -14,7 +14,32 @@ end
 
 
 get '/anagram' do
-  @words = Word.where("frequency>? and word_length > ? and word_length < ?", 1.746, 5, 9)
+
+  @words = []
+  File.open("./public/wordList2.txt", "r") do |f|
+    f.each_line do |line|
+      vars = line.split
+      ctnt = vars[0]
+      freq = 2.1
+      word = {content: ctnt, frequency: freq, word_length: ctnt.length} # some ruby object
+      if (word[:frequency]>1 and word[:word_length]>5 and word[:word_length]<9)
+        @words.push(word)
+      end
+    end
+  end
+
+  @selection = @words.shuffle.first(50)
+  @cselection = @selection.map{|word| word[:content]}
+  @shuffled = @cselection.map{|word| word.upcase.split('').shuffle}
+
+
+  #@words = Word.where("frequency>? and word_length > ? and word_length < ?", 1.746, 5, 9)
+
+  # @words.length
+
+  # @cselection = @words.shuffle.first(50).collect(&:content)
+  # @shuffled = @cselection.map{|word| word.upcase.split('').shuffle}
+
   erb :anagram
 end
 

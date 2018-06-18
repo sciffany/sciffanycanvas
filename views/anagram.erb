@@ -6,8 +6,7 @@
 <head>
 
 </head>
-<body style="background-color:#46B29D;" onload="onLoad()">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<body style="background-color:#46B29D;">
 	
 
 	<div class="page">
@@ -16,13 +15,8 @@
 		</div>
 		<div id="wrapper">
 			<canvas id="canvas" tabindex="1"></canvas>
-			<%= @words.length %>
 
-			<% @selection = @words.shuffle.first(50).collect(&:content)
-				@shuffled = @selection.map{|word| word.upcase.split('').shuffle} %>
-
-
-			<script type = "text/javascript">var selection = <%= @selection %>; var shuffled = <%= @shuffled %></script>
+			<script type = "text/javascript">var selection = <%= @cselection %>; var shuffled = <%= @shuffled %></script>
 			<script src="anagram.js"></script>
 		</div>
 	</div>
