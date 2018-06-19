@@ -46,7 +46,6 @@ end
 
 
 post '/anagram' do
-  log(params[:text]);
   File.open("./public/log.txt", 'a') { |file| file.write(params[:text]); file.write("\n"); }
 end
 
