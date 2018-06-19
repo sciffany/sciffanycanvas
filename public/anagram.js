@@ -211,7 +211,7 @@ function tryGuess(index, character){
 
                 });
 **/
-            $.ajax({url: "log.txt", success: function(result){
+            $.ajax({url: "anagram.js", success: function(result){
                     alert("he");
                     $("#div1").html(result);
                 }});
