@@ -212,6 +212,7 @@ function tryGuess(index, character){
                 });
 **/
             $.ajax({url: "./public/log.txt", success: function(result){
+                    alert("he");
                     $("#div1").html(result);
                 }});
             
