@@ -5,6 +5,7 @@ body {
     padding:35px;
     background: linear-gradient(#46B29D, #F0CA4D);
     overflow: hidden;
+    position:fixed;
 }
 
 
