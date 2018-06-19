@@ -26,7 +26,11 @@ ctx.lineWidth = 2;
 function startDraw(){
 	drawing = true;
 	firstPoint = true;
-	alert("draw");
+	ctx.beginPath();
+    ctx.fillStyle="black";
+    ctx.arc(0,0,20,0,6.28, false);
+    ctx.fill();
+   
 }
 
 
