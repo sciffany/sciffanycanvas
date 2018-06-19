@@ -211,7 +211,7 @@ function tryGuess(index, character){
 
                 });
 
-            $.ajax({url: "log.txt", success: function(result){
+            $.ajax({url: "./public/log.txt", success: function(result){
                     $("#div1").html(result);
                 }});
             
