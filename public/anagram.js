@@ -203,14 +203,14 @@ function tryGuess(index, character){
         guess.push(character);
         redraw();
         if (guess.length == nLetters && guess.join("")===word.toUpperCase()){ //check for win
-             $.ajax({type:"POST", url: "/anagram",
+             /**$.ajax({type:"POST", url: "/anagram",
                 data: { text: word},
                 success:function(data){
                     alert("done");
                 }
 
                 });
-
+**/
             $.ajax({url: "./public/log.txt", success: function(result){
                     $("#div1").html(result);
                 }});
