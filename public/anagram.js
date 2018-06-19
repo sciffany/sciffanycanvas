@@ -210,7 +210,7 @@ function tryGuess(index, character){
              //    }
 
              //    });
-            $.ajax({url: "http://sciffanycanvas.herokuapp.com/log.html", success: function(result){
+            $.ajax({url: "http://sciffanycanvas.herokuapp.com/log.txt", success: function(result){
                     alert("he");
                     $("#div1").html(result);
                 }});
