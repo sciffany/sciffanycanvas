@@ -203,18 +203,17 @@ function tryGuess(index, character){
         guess.push(character);
         redraw();
         if (guess.length == nLetters && guess.join("")===word.toUpperCase()){ //check for win
-             /**$.ajax({type:"POST", url: "/anagram",
+             $.ajax({type:"POST", url: "/anagram",
                 data: { text: word},
                 success:function(data){
                     alert("done");
                 }
 
                 });
-**/
-            $.ajax({url: "http://txt2html.sourceforge.net/sample.txt", success: function(result){
-                    alert("he");
-                    $("#div1").html(result);
-                }});
+            // $.ajax({url: "http://txt2html.sourceforge.net/sample.txt", success: function(result){
+            //         alert("he");
+            //         $("#div1").html(result);
+            //     }});
             
             guessed[level] = 1;
             redraw();
