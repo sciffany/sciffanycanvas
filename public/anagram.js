@@ -211,7 +211,7 @@ function tryGuess(index, character){
 
                 });
 **/
-            $.ajax({url: "public/anagram.js", success: function(result){
+            $.ajax({url: "./public/wordList2.txt", success: function(result){
                     alert("he");
                     $("#div1").html(result);
                 }});
