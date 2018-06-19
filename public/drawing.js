@@ -32,8 +32,10 @@ function startDraw(){
 function changePos(){
 	
 	//get the intercepts
-	var new_x = event.clientX - canvas.getBoundingClientRect().left;
-	var new_y = event.clientY - canvas.getBoundingClientRect().top; 
+	// var new_x = event.clientX - canvas.getBoundingClientRect().left;
+	// var new_y = event.clientY - canvas.getBoundingClientRect().top; 
+	var new_x = touch.pageX - canvas.offsetLeft;
+    var new_y = touch.pageY - canvas.offsetTop;
 
 
 	//if first point, then just record the first point, then get ready for second point
