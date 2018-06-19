@@ -17,6 +17,8 @@ c.addEventListener("touchstart", startDraw);
 c.addEventListener("touchmove", changePos);
 c.addEventListener("touchend", endDraw);
 
+
+
 var x;
 var y;
 var firstPoint = false;
@@ -26,6 +28,7 @@ ctx.lineWidth = 2;
 function startDraw(){
 	drawing = true;
 	firstPoint = true;
+	var touch = event.touches[0];
 	var new_x = touch.pageX - canvas.offsetLeft;
     var new_y = touch.pageY - canvas.offsetTop;
 
@@ -38,7 +41,7 @@ function startDraw(){
 
 
 function changePos(){
-	
+	var touch = event.touches[0];
 	//get the intercepts
 	// var new_x = event.clientX - canvas.getBoundingClientRect().left;
 	// var new_y = event.clientY - canvas.getBoundingClientRect().top; 
