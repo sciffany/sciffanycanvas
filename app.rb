@@ -15,6 +15,7 @@ end
 
 get '/anagram' do
 
+
   @words = []
   File.open("./public/wordList2.txt", "r") do |f|
     f.each_line do |line|
@@ -43,6 +44,10 @@ get '/anagram' do
   erb :anagram
 end
 
+
+post '/anagram' do
+  File.open("./public/log.txt", 'a') { |file| file.write(params[:text]); file.write("\n"); }
+end
 
 
 get '/admin/words' do
