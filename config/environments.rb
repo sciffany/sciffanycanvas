@@ -2,6 +2,7 @@
 # => postgres://{user}:{password}@{host}:{port}/path
 configure :production, :development do
 	db = URI.parse(ENV['DATABASE_URL'] || 'postgres://localhost/mydb')
+	config.serve_static_files = true
 	#db = URI.parse('postgres://uwyflzkdqerqcp:55dfe7127c6e7be5bca5c3403289adc7680e5e4fced3e299433f72cdf77da724@ec2-107-21-99-176.compute-1.amazonaws.com:5432/path' || 'postgres://localhost/mydb')
 	
 	ActiveRecord::Base.establish_connection(
