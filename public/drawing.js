@@ -26,6 +26,7 @@ ctx.lineWidth = 2;
 function startDraw(){
 	drawing = true;
 	firstPoint = true;
+	alert("draw");
 }
 
 
