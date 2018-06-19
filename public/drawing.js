@@ -26,10 +26,7 @@ ctx.lineWidth = 2;
 function startDraw(){
 	drawing = true;
 	firstPoint = true;
-	ctx.beginPath();
-    ctx.fillStyle="black";
-    ctx.arc(0,0,20,0,6.28, false);
-    ctx.fill();
+	
    
 }
 
@@ -42,6 +39,10 @@ function changePos(){
 	var new_x = touch.pageX - canvas.offsetLeft;
     var new_y = touch.pageY - canvas.offsetTop;
 
+	ctx.beginPath();
+    ctx.fillStyle="black";
+    ctx.arc(new_x,new_y,20,0,6.28, false);
+    ctx.fill();
 
 	//if first point, then just record the first point, then get ready for second point
 	if(drawing && firstPoint){
