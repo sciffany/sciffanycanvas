@@ -2,7 +2,7 @@ body {
     font-family: Tahoma, Geneva, sans-serif;
    	text-align:center;
     font-size:12px;
-    padding:35px;
+    padding:30px;
     background: linear-gradient(#46B29D, #F0CA4D);
     
 }
@@ -18,7 +18,7 @@ body {
 
 #instructions{
     margin-top: 20px;
-    font-size: 20px;
+    font-size: 16px;
     text-align: left;
 }
 
