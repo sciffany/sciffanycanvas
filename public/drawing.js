@@ -1,4 +1,3 @@
-
 var c = document.getElementById("canvas");
 
 var pad=40;
@@ -17,8 +16,6 @@ c.addEventListener("touchstart", startDraw);
 c.addEventListener("touchmove", changePos);
 c.addEventListener("touchend", endDraw);
 
-
-
 var x;
 var y;
 var firstPoint = false;
@@ -28,30 +25,15 @@ ctx.lineWidth = 2;
 function startDraw(){
 	drawing = true;
 	firstPoint = true;
-	var touch = event.touches[0];
-	var new_x = touch.pageX - canvas.offsetLeft;
-    var new_y = touch.pageY - canvas.offsetTop;
-
-	ctx.beginPath();
-    ctx.fillStyle="black";
-    ctx.arc(new_x,new_y,20,0,6.28, false);
-    ctx.fill();
-   
 }
 
 
 function changePos(){
-	var touch = event.touches[0];
+	
 	//get the intercepts
-	// var new_x = event.clientX - canvas.getBoundingClientRect().left;
-	// var new_y = event.clientY - canvas.getBoundingClientRect().top; 
-	var new_x = touch.pageX - canvas.offsetLeft;
-    var new_y = touch.pageY - canvas.offsetTop;
+	var new_x = event.clientX - canvas.getBoundingClientRect().left;
+	var new_y = event.clientY - canvas.getBoundingClientRect().top; 
 
-	ctx.beginPath();
-    ctx.fillStyle="black";
-    ctx.arc(new_x,new_y,20,0,6.28, false);
-    ctx.fill();
 
 	//if first point, then just record the first point, then get ready for second point
 	if(drawing && firstPoint){
