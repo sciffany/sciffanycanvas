@@ -4,31 +4,23 @@ body {
     font-size:12px;
     padding:35px;
     background: linear-gradient(#46B29D, #F0CA4D);
-    overflow: hidden;
-    position:fixed;
+    
 }
-
-
 
 .page{
-	display: flex;
-	height:100%;
-	flex-flow:column;	
 }
-
 
 #wrapper{
-	margin:0;
-	text-align:center;
-	flex: 1 1 auto;
-	display: flex;
 }
-
 
 #canvas{
-	flex: 1 1 auto;
 }
 
+#instructions{
+    margin-top: 20px;
+    font-size: 20px;
+    text-align: left;
+}
 
 #title{
 	text-align:center;

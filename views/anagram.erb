@@ -11,7 +11,7 @@
 
 	<div class="page">
 		<div id="title">
-		Entropius
+		Entropius!
 		</div>
 		<div id="wrapper">
 			<canvas id="canvas" tabindex="1"></canvas>
@@ -19,13 +19,22 @@
 			<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
 			<script type = "text/javascript">var selection = <%= @cselection %>; var shuffled = <%= @shuffled %></script>
-			<script src="anagram.js"></script>
+			<script src="anagram.js"></script>	
 		</div>
-		<div id="div1">
-			here
+		<div id="instructions" ">
+			<b>Instructions</b><br />
+			Type in the anagrams using your keyboard or mouse 
+			
+			</p><b>Keyboard shortcuts</b><br />
+				<i> Spacebar </i> - shuffle letters</br>
+				<i> Shift+backspace  </i>- clear word</br>
+				<i> Enter  </i>- reveal next letter</br>
+				<i> 1  </i>- previous word</br>
+				<i> 2  </i>- next word </br>
+			
 		</div>
-	</div>
 
+	</div>
 
 </body>
 

@@ -1,3 +1,4 @@
+
 var c = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 var pad=40;
@@ -189,7 +190,7 @@ function returnLetters(){
 
 function guessIndex(index){
     var character = letters[index];
-    if (character!=" ") {
+    if (character!=" " && character!=undefined) {
 
     tryGuess(index, character);
     }
