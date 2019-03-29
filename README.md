@@ -1,7 +1,7 @@
-## sciffanycanvas
+# sciffanycanvas
 Personal website for nerd games and nerd things
 
-# Where to find
+## Where to find
 sciffanycanvas.herokuapp.com
 
 ## How to run locally
