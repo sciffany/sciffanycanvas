@@ -10,7 +10,7 @@ var state = 1; //0-not playing, 1-playing, 2-ending
 
 window.addEventListener("resize",resizeCanvas, false);
 window.addEventListener("orientationchange",resizeCanvas, false);
-
+c.focus();
 var level = 0;
 var word = selection[level];
 var letters = shuffled[level];
