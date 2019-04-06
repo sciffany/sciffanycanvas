@@ -5,9 +5,9 @@ Made with Sinatra.
 
 ## Site map
 
- * <a href="sciffanycanvas.herokuapp.com/anagram">Entropius!</a> - An anagram game with responsive web design and words queried based on frequency of usage
+ * <a href="http://sciffanycanvas.herokuapp.com/anagram">Entropius!</a> - An anagram game with responsive web design and words queried based on frequency of usage
 
- * <a href="sciffanycanvas.herokuapp.com/anagram">Canvas</a> - Free drawing space (not much for now)
+ * <a href="http://sciffanycanvas.herokuapp.com">Canvas</a> - Free drawing space (not much for now)
 
 ## Building the file locally
 1. Download the repo and navigate to folder via Terminal.
