@@ -1,9 +1,8 @@
-#str = File.open("./public/wordList2.txt", "r") { |f| f.readline }
-  
-#Word.create(content: str)
+# str = File.open("./public/wordList2.txt", "r") { |f| f.readline }
 
+# Word.create(content: str)
 
-File.open("./public/wordList3.txt", "r") do |f|
+File.open('./public/wordList3.txt', 'r') do |f|
   f.each_line do |line|
     vars = line.split
     word = vars[0]

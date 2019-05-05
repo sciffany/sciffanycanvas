@@ -5,36 +5,31 @@ require './config/environments'
 require './models/word'
 
 class App < Sinatra::Base
-  
 end
 
 get '/' do
   erb :index
 end
 
-
 get '/anagram' do
-
-
   @words = []
-  File.open("./public/wordList2.txt", "r") do |f|
+  File.open('./public/wordList2.txt', 'r') do |f|
     f.each_line do |line|
       vars = line.split
       ctnt = vars[0]
       freq = vars[1].to_f
-      word = {content: ctnt, frequency: freq, word_length: ctnt.length} # some ruby object
-      if (word[:frequency]>1.7 and word[:word_length]>5 and word[:word_length]<9)
+      word = { content: ctnt, frequency: freq, word_length: ctnt.length } # some ruby object
+      if (word[:frequency] > 1.7) && (word[:word_length] > 5) && (word[:word_length] < 9)
         @words.push(word)
       end
     end
   end
 
-  @selection = @words.shuffle.first(50)
-  @cselection = @selection.map{|word| word[:content]}
-  @shuffled = @cselection.map{|word| word.upcase.split('').shuffle}
+  @selection = @words.sample(50)
+  @cselection = @selection.map { |word| word[:content] }
+  @shuffled = @cselection.map { |word| word.upcase.split('').shuffle }
 
-
-  #@words = Word.where("frequency>? and word_length > ? and word_length < ?", 1.746, 5, 9)
+  # @words = Word.where("frequency>? and word_length > ? and word_length < ?", 1.746, 5, 9)
 
   # @words.length
 
@@ -44,33 +39,27 @@ get '/anagram' do
   erb :anagram
 end
 
-
 post '/anagram' do
-  File.open("./public/log.txt", 'a') { |file| file.write(params[:text]); file.write("\n"); }
+  File.open('./public/log.txt', 'a') { |file| file.write(params[:text]); file.write("\n"); }
 end
 
-
 get '/admin/words' do
-  
   @words = Word.all
   erb :words
 end
 
-
 post '/admin/words/submit' do
-
   @words = params[:word].split(' ')
   @noOfWords = @words.length
   @words.each do |word|
-  	@word = Word.new({content: word})
-	@word.update_attributes(word_length: @word.content.length)
-	@noOfWords -= 1 if @word.save
+    @word = Word.new(content: word)
+    @word.update_attributes(word_length: @word.content.length)
+    @noOfWords -= 1 if @word.save
   end
 
   if @noOfWords == 0
-  	redirect '/admin/words'
+    redirect '/admin/words'
   else
-  	"Sorry"
+    'Sorry'
   end
 end
-
