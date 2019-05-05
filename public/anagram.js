@@ -15,6 +15,8 @@ var nLetters = letters.length;
 var guess = [];
 var noOfWords = shuffled.length;
 var guessed = [];
+var touchX;
+var touchY;
 
 for (var i = 0; i < noOfWords; i++) {
   guessed.push(0);
@@ -34,8 +36,22 @@ function startGame() {}
 function endGame() {}
 
 function slid(e) {
-  returnLetters();
-  redraw();
+  var touch = e.changedTouches[0];
+  var deltaX = touch.pageX - touchX;
+  var deltaY = touch.pageY - touchY;
+  var gradient = deltaY / deltaX;
+  console.log(deltaX);
+  if (deltaX < -300) {
+    if (!guessed[level]) {
+      returnLetters();
+    }
+    changeLevel(-1);
+  } else if (deltaX > 300) {
+    if (!guessed[level]) {
+      returnLetters();
+    }
+    changeLevel(1);
+  }
 }
 
 function touched() {
@@ -53,8 +69,9 @@ function touched() {
   var i = x / stride;
 
   i = Math.round(i);
-
   guessIndex(i);
+  touchX = x;
+  touchY = y;
 }
 
 function clicked() {
@@ -78,7 +95,7 @@ function midGame() {
   c.addEventListener("keydown", check);
 
   c.addEventListener("touchstart", touched);
-  c.addEventListener("touchmove", slid);
+  c.addEventListener("touchend", slid);
   c.addEventListener("mousedown", clicked);
 
   c.addEventListener("keydown", function(e) {
@@ -135,6 +152,17 @@ function redraw() {
     ctx.fillStyle = circleColor;
     ctx.fillText(guess[i], position - radius / 4, radius * 6);
   }
+
+  //draw X
+  var position =
+    stride * nLetters + stride / 2 + ((1 - percentCanvas) * c.width) / 2;
+  ctx.beginPath();
+  ctx.fillStyle = "red";
+  ctx.arc(position + 1, radius * 3, radius * 0.5, 0, 6.28, false);
+  ctx.fill();
+  ctx.fillStyle = "black";
+  ctx.fillText("X", position - radius / 3, radius * 3.5);
+
   drawLevelBars();
 }
 
@@ -175,7 +203,12 @@ function returnLetters() {
 }
 
 function guessIndex(index) {
+  if (index == nLetters) {
+    returnLetters();
+    redraw();
+  }
   var character = letters[index];
+
   if (character != " " && character != undefined) {
     tryGuess(index, character);
   }
